@@ -4,15 +4,8 @@
  * all of the tests that will be run against your application.
  */
 
-/* We're placing all of our tests within the $() function,
- * since some of these tests may require DOM elements. We want
- * to ensure they don't run until the DOM is ready.
- */
 $(function() {
-	/* This is our first test suite - a test suite just contains
-	* a related set of tests. This suite is all about the RSS
-	* feeds definitions, the allFeeds variable in our application.
-	*/
+
 	describe('RSS Feeds', function() {
 
 		/* This is our first test - it tests to make sure that the
@@ -52,8 +45,6 @@ $(function() {
 		});
 	});
 
-
-	/* TODO: Write a new test suite named "The menu" */
 	describe('The menu', function() {
 
 		// define body
@@ -64,8 +55,8 @@ $(function() {
 		 * the CSS to determine how we're performing the
 		 * hiding/showing of the menu element.
 		 */
-
 		it('is hidden by default', function() {
+			// check that the class that hides the menu is applied to the body
 			expect(body.hasClass('menu-hidden')).toBe(true);
 		});
 
@@ -74,7 +65,6 @@ $(function() {
 		 * should have two expectations: does the menu display when
 		 * clicked and does it hide when clicked again.
 		 */
-
 		it('toggles open/closed when clicked', function() {
 			var menuLink = $('.menu-icon-link');
 
@@ -89,21 +79,22 @@ $(function() {
 
 	});
 
-	/* TODO: Write a new test suite named "Initial Entries" */
+
 	describe('Initial Entries', function() {
 
 		/* A test that ensures when the loadFeed
 		 * function is called and completes its work, there is at least
 		 * a single .entry element within the .feed container.
-		 * Remember, loadFeed() is asynchronous so this test will require
-		 * the use of Jasmine's beforeEach and asynchronous done() function.
 		 */
 
+		// do this before the test
 		beforeEach(function(done) {
+			//load feed
 			loadFeed(0, done);
 		});
 
 		it('should load at least one entry', function() {
+			// make sure there is at least one .entry in the DOM
         	var entries = $(".feed .entry").length;
         	expect(entries).toBeGreaterThan(0);
 
@@ -111,12 +102,27 @@ $(function() {
 
 	});
 
-	/* TODO: Write a new test suite named "New Feed Selection" */
 
-	describe('Initial Entries', function() {
-		/* TODO: Write a test that ensures when a new feed is loaded
+	describe('New Feed Selection', function() {
+
+		/* A test that ensures when a new feed is loaded
 		 * by the loadFeed function that the content actually changes.
-		 * Remember, loadFeed() is asynchronous.
 		 */
+
+		var initialContent;
+
+		// do this before the test
+		beforeEach(function(done) {
+			// get content before feed loads then load feed
+		 	initialContent = $('.feed').html();
+			loadFeed(0, done);
+		});
+
+		it('changes content when feed is loaded', function(){
+			// get content after feed loads and compare
+			var updatedContent = $('.feed').html();
+			expect(updatedContent).not.toMatch(initialContent);
+		});
+
 	});
 }());

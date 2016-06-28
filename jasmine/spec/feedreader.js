@@ -113,9 +113,13 @@ $(function() {
 
 		// do this before the test
 		beforeEach(function(done) {
-			// get content before feed loads then load feed
-		 	initialContent = $('.feed').html();
-			loadFeed(0, done);
+			// get content before feed loads
+			loadFeed(0, function(){
+				initialContent = $('.feed').html();
+				// load feed
+				loadFeed(0, done);
+			});
+
 		});
 
 		it('changes content when feed is loaded', function(){

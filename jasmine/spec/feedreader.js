@@ -95,10 +95,10 @@ $(function() {
 
 		it('should load at least one entry', function() {
 			// make sure there is at least one .entry in the DOM
-        	var entries = $(".feed .entry").length;
-        	expect(entries).toBeGreaterThan(0);
+			var entries = $('.feed .entry').length;
+			expect(entries).toBeGreaterThan(0);
 
-     	});
+		});
 
 	});
 

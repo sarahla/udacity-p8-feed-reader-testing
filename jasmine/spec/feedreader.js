@@ -77,19 +77,6 @@ $(function() {
 			expect(body.hasClass('menu-hidden')).toBe(true);
 		});
 
-		it('moves on/off screen when toggled', function() {
-			var menuLink = $('.menu-icon-link');
-			var slideMenu = $('.slide-menu');
-
-			// click the menu item once
-			menuLink.trigger('click');
-			expect(slideMenu.position().left).toBeLessThan(0);
-
-			//click the menu item again
-			menuLink.trigger('click');
-			expect(slideMenu.offset().left).not.toBeLessThan(0);
-		});
-
 	});
 
 

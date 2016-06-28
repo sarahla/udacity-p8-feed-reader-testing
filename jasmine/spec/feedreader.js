@@ -117,7 +117,7 @@ $(function() {
 			loadFeed(0, function(){
 				initialContent = $('.feed').html();
 				// load feed
-				loadFeed(0, done);
+				loadFeed(1, done);
 			});
 
 		});
@@ -125,7 +125,7 @@ $(function() {
 		it('changes content when feed is loaded', function(){
 			// get content after feed loads and compare
 			var updatedContent = $('.feed').html();
-			expect(updatedContent).not.toMatch(initialContent);
+			expect(updatedContent).not.toBe(initialContent);
 		});
 
 	});
